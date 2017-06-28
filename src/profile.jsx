@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-// TODO: import our profile styles
-// import './profile.css';
+
 
 class Profile extends Component {
   render() {
@@ -17,24 +16,25 @@ class Profile extends Component {
           </ul>
         </div>
       </div>
-    );
+    )
   }
 }
 
-// TODO: define a component to represent out list of hobbies with a profile
-// class HobbyList extends Component {
-//   render() {
 
-//     let hobbyList = _.map(this.props.hobbies, hobby => {
-//       return <li> - {hobby} </li>
-//     });
+class HobbyList extends Component {
+  render() {
 
-//     return (
-//       <ul className="hobby-list">
-//         {hobbyList}
-//       </ul>
-//     );
-//   }
-// }
+    let hobbyList = _.map(this.props.hobbies, hobby => {
+      return <li> - {hobby} </li>
+    });
+
+    return (
+      <ul className="hobby-list">
+        {hobbyList}
+      </ul>
+    )
+  }
+}
+
 
 export default Profile;
