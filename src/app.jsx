@@ -6,10 +6,20 @@ import './app.css';
 
 import profileData from './data'
 
+import Profile from './profile'
+
 
 class App extends Component {
 
   render() {
+
+    let profileList = _.map(profileData, (profileObj) => {
+      return (
+        <Profile name={profileObj.name}
+                 age={profileObj.age}
+                 hobbies={profileObj.hobbies} />
+      )
+    })
 
     return (
       /*TODO: Display the data raw */
@@ -26,6 +36,8 @@ class App extends Component {
           <h2>Welcome to React</h2>
 
         </div>
+
+        {profileList}
 
       </div>
 
