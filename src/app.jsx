@@ -1,49 +1,63 @@
 import React, { Component } from 'react';
-import _ from 'lodash'
 
 import logo from './logo.svg';
 import './app.css';
 
-import profileData from './data'
-
-import Profile from './profile'
-
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      counter: 0,
+      unusedStateVariable: 'bleeeeb',
+    };
+  }
+
+
+  alertSomething = () => {
+    alert('Clicked the basic handler, eh?');
+  }
+
+
+  addOne = () => {
+    const newCounterValue = this.state.counter + 1;
+
+    this.setState({
+      counter: newCounterValue,
+    });
+  }
+
+
   render() {
-
-    let profileList = _.map(profileData, (profileObj) => {
-      return (
-        <Profile name={profileObj.name}
-                 age={profileObj.age}
-                 hobbies={profileObj.hobbies} />
-      )
-    })
-
     return (
-      /*TODO: Display the data raw */
-      /*TODO: Display the data as a list of profiles */
-
       <div className="app">
 
         <div className="app-header">
-
           <img src={logo}
                className="app-logo"
                alt="logo" />
-
           <h2>Welcome to React</h2>
-
         </div>
 
-        {profileList}
+        <div>
+          <button onClick={this.alertSomething}>
+            Super Basic Click Handler
+          </button>
+        </div>
+
+        <div>
+          <button onClick={this.addOne}>
+            Add 1 To The Number
+          </button>
+
+          <span> {this.state.counter} </span>
+        </div>
 
       </div>
-
     );
   }
-
 }
 
 export default App;
