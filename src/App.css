@@ -4,20 +4,53 @@
   align-items: center;
 }
 
-.app-logo {
-  animation: app-logo-spin infinite 20s linear;
-  height: 80px;
+
+.google-logo{
+  display: flex;
+  height: 150px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 100px;
+  color: red;
+  margin-top: 20px;
 }
 
-.app-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.user-info{
+display: flex;
+flex-direction: row;
+position: absolute;
+top: 0;
+right: 0;
+color: blue;
+}
+
+.user-picture{
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.user-mail{
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.superdiv{
   width: 100%;
+  position: relative;
+}
+
+.search-info{
+  text-align: center;
+}
+
+.search-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.search-standard{
+  margin: 10px;
 }
 
 @keyframes app-logo-spin {
