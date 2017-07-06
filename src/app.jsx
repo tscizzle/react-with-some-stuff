@@ -153,7 +153,7 @@ class SearchButtons extends Component {
 
   render() {
     return(
-      <div className="search-button"> 
+      <div className="search-buttons"> 
           <SearchButton message="Google Search"/>
           <SearchButton message="I'm Feeling Lucky"/>
 
@@ -167,7 +167,7 @@ class SearchButton extends Component {
 
   render() {
     return(
-      <div className="search-standard"> {this.props.message} </div>
+      <button className="search-standard"> {this.props.message} </button>
     )
   }
 

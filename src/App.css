@@ -46,8 +46,8 @@ color: blue;
 
 .search-buttons{
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  flex-direction: row;
 }
 .search-standard{
   margin: 10px;
