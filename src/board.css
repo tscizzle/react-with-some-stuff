@@ -1,0 +1,14 @@
+.boards { margin: 20px 0; overflow: hidden; }
+
+.board { 
+	border: 5px solid #ccc; 
+	float: left; 
+	font: 700 24px HelveticaNeue, Helvetica, Arial; 
+	margin-right: 20px; 
+	padding: 20px; 
+	-webkit-transition: border 2s;
+	transition: border .5s;
+}
+
+.board.selected { 
+	border-color: #61dafb; }

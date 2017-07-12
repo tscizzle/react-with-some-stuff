@@ -2,22 +2,33 @@
 /* TODO: give the displayed profiles some styles  */
 
 .profile {
-
-}
-  /*padding: 35px;
+	margin: 20px;
+  padding: 35px;
   border-radius: 10px;
   box-shadow: 0 0 10px #AAA;
   background-color: #F7F7F7;
-  color: #555;*/
-
-.profile-name {
-
+  color: #555;
+  min-width: 200px;
+  display: inline;
+  float: left;
 }
-  /*margin-bottom: 20px;*/
+
+
+.profile-name, .profile-age {
+  margin-bottom: 10px;
+}
+
 
 .hobby-list {
-
-}
-/*  padding: 0;
+  padding: 0;
   margin: 0;
-  list-style: none;*/
+  list-style: none;
+  position: relative;
+  top: -18px;
+}
+
+
+.hobby-list li {
+  margin-left: 75px; 
+}
+

@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import _ from 'lodash'
 
 import logo from './logo.svg';
+import './app.css';
 
 import profileData from './data'
 
 import Profile from './profile'
 
-import BoardSwitcher from './board' 
+import BoardSwitcher from './board'
 
 
-export default class App extends Component {
+class App extends Component {
 
   render() {
 
@@ -58,6 +59,4 @@ export default class App extends Component {
 
 }
 
-
-
-
+export default App;
