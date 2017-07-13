@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       counter: 0,
       unusedStateVariable: 'bleeeeb',
+      toggle: 'off',
     };
   }
 
@@ -27,6 +28,15 @@ class App extends Component {
     this.setState({
       counter: newCounterValue,
     });
+  }
+
+
+  toggleIt = () => {
+    if (this.state.toggle === 'on') {
+      this.setState({toggle: 'off'})
+    } else {
+      this.setState({toggle: 'on'})
+    }
   }
 
 
@@ -53,6 +63,14 @@ class App extends Component {
           </button>
 
           <span> {this.state.counter} </span>
+        </div>
+
+        <div>
+          <button onClick={this.toggleIt}>
+            Toggle
+          </button>
+
+          <span> {this.state.toggle} </span>
         </div>
 
       </div>
