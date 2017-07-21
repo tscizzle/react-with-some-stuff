@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import './google.css';
 
 
 export default class Google extends Component {
-
   render() {
 
     return (
@@ -24,7 +24,7 @@ export default class Google extends Component {
 class Logo extends Component {
 
   render() {
-    return <div className="google-logo" ></div>
+    return <div className="google-logo"></div>
   }
 }
 
@@ -51,48 +51,54 @@ class SearchContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {searchTerm: '',
-                  bcolor: 'white'}
+    this.state = {history:[], searchTerm: ''}
 
 
     // if (!window.webkitSpeechRecognition) {
-    //   console.log("No support for webkitSpeechRecognition")
+    //   console.log("support for webkitSpeechRecognition")
     // } else {
-    //   var speechRecog = new webkitSpeechRecognition();
-    //   speechRecog.onresult = function(event) { console.log(event); };
+    //   var speechRecog = new window.webkitSpeechRecognition();
+    //   speechRecog.onresult = function(event) { 
+    //     console.log(event); 
+    //   };
     //   /*speechRecog.start();*/
     // }
   }
 
+  onKeyUp = (e) => {
 
-
-  handleChange = (e) => {
-    console.log(e)
-    this.setState({
-      searchTerm: e.target.value
-    });
-  }
-
-  handleEnter = (e) => {
     if (parseInt(e.detail || e.which, 10) === 13) {
+      // open Google search
       window.open("https://www.google.com/search?q="+this.state.searchTerm)
-    } 
+
+      // add to history and clear the search box
+      if (e.target.value.length > 0) {  // only save non-empty search strings
+        
+        var h_array = this.state.history
+        h_array.push(this.state.searchTerm)
+
+        document.getElementsByTagName("input")[0].value = '' // TODO: this is hacky
+
+        this.setState({
+          history: h_array,  
+          searchTerm: ''
+        }); 
+      }
+    } else {
+      this.setState({searchTerm: e.target.value});
+    }
   }
-
- 
-
 
 
   render() {
 
-     //var style = {background: '#cc181e'}
-     var style = {background: this.state.searchTerm}
+    var style = {background: this.state.searchTerm}
 
     return (
 
       <div style={style}>
-      <div className="google-search-container"> 
-        <SearchBox onChange={this.handleChange} onKeyPress={this.handleEnter}/>
+        <div className="google-search-container"> 
+          <SearchBox onKeyUp={this.onKeyUp} history={this.state.history} value={this.state.searchTerm}/>
         </div>
         <div className="google-search-btn-container">
         <Button searchType="regular" labelName="Girls Who Code Search" searchTerm={this.state.searchTerm}/>
@@ -104,14 +110,42 @@ class SearchContainer extends Component {
   }
 }
 
+function Item(props) {
+  return <li>{props.item}</li>;
+}
+
+class SuggestionMenu extends Component {
+
+  render() {
+
+    let suggestionList = _.map(this.props.history, item => {
+      return <li> {item} </li>
+    });
+
+    let sl = this.props.history.map((item) => <Item key={item} item={item} />)
+
+    return (
+      <div>
+        <ul className="suggestion-list">{sl}</ul>
+      </div>
+    )
+  }
+}
+
 class SearchBox extends Component {
 
   render() {
+
     return (
-      <div className="google-searchbox-container">
-        <input type="text" className="google-search" onChange={this.props.onChange} onKeyPress={this.props.onKeyPress}/>
-        <div className="google-mic"></div>
-      </div>
+      <div>
+        <div>
+   
+          <input autoFocus type="text" className="google-search" onKeyUp={this.props.onKeyUp}/>
+          <div className="google-mic"></div>
+
+        </div>
+        <SuggestionMenu history={this.props.history}/>
+        </div>
       )
   }
 }
@@ -122,11 +156,15 @@ class Button extends Component {
     var href="#"
 
     if (this.props.searchTerm.length > 0) {
-        href = "https://www.google.com/search?q=girls+who+code+" + this.props.searchTerm;
+        href = "https://www.google.com/search?q=" + this.props.searchTerm;
 
-        if (this.props.searchType === "image") href += "&tbm=isch"
+        if (this.props.searchType === "image") {
+          href += "&tbm=isch"
+        } 
+        else {
+          href += "+girls+who+code"
+        }
     }
-
 
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className="google-button">{this.props.labelName}</a>
@@ -134,18 +172,6 @@ class Button extends Component {
   }
 }
 
-class ColorButton extends Component {
-
-  handleOnClick = () => {
-    console.log(document.getElementsByClassName("google-app"))
-  }
-
-  render() {
-    return (
-      <div rel="noopener noreferrer" className="google-button" onClick={this.handleOnClick}>{this.props.labelName}</div>
-      )
-  }
-}
 
 class Boring extends Component {
   render () {
@@ -165,9 +191,5 @@ class Boring extends Component {
       )
   }
 }
-
-
-
-
 
 

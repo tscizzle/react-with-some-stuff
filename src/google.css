@@ -24,6 +24,10 @@ a.google-link {
 	color: #3a3a3a;
 }
 
+a.google-link:hover {
+	text-decoration: underline;
+}
+
 .google-icon {
 	background-image: url(http://ssl.gstatic.com/gb/images/i1_1967ca6a.png);
 	background-repeat: no-repeat;
@@ -34,8 +38,9 @@ a.google-link {
 	height: 20px;
 	width: 20px;
 	border-radius: 50%;
-	background-color: rgba(0,0,0,.55);
+	background-color: rgb(0,0,0);
 	background-position: -194px -21px;
+	opacity: .55
 }
 
 .google-apps {
@@ -120,6 +125,10 @@ input.google-search {
 	justify-content: center;
 }
 
+.suggestion-list {
+	list-style: none;
+}
+
 .google-button {
 	margin: 10px;
 	padding: 10px 20px;
@@ -127,7 +136,7 @@ input.google-search {
 	text-align: center;
 	font-weight: bold;
 	font-size: 12px;
-	color: #757575;
+	color: #747474;
 	border: 1px solid white;
 	cursor: pointer;
 }
