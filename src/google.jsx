@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 
 import './google.css';
 
@@ -110,19 +109,19 @@ class SearchContainer extends Component {
   }
 }
 
-function Item(props) {
-  return <li>{props.item}</li>;
+
+
+class SuggestionItem extends Component {
+  render() {
+    return <li>{this.props.item}</li>;
+  }
 }
 
 class SuggestionMenu extends Component {
 
   render() {
 
-    let suggestionList = _.map(this.props.history, item => {
-      return <li> {item} </li>
-    });
-
-    let sl = this.props.history.map((item) => <Item key={item} item={item} />)
+    let sl = this.props.history.map((item) => <SuggestionItem key={item} item={item} />)
 
     return (
       <div>
