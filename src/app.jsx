@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     let profileList = _.map(profileData, (profileObj) =>{
       return (
-        <Profile 
+        <Profile
         name={profileObj.name}
         age={profileObj.age}
         hobbies={profileObj.hobbies}
@@ -96,7 +96,7 @@ class Logo extends Component {
 class User extends Component {
 
   render() {
-  
+
 
       return(
 
@@ -132,7 +132,7 @@ class Search extends Component {
 
   render() {
     return(
-      <div className="search-info"> 
+      <div className="search-info">
           <SearchBar/>
           <SearchButtons/>
        </div>
@@ -143,7 +143,7 @@ class Search extends Component {
 class SearchBar extends Component {
 
   render() {
-    return(
+    return (
       <input className= "bar"/>
     )
   }
@@ -151,12 +151,26 @@ class SearchBar extends Component {
 }
 class SearchButtons extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      eitherIsClicked: false,
+    }
+  }
+
+  handleClick = () => {
+    this.setState({eitherIsClicked: true})
+  }
+
   render() {
     return(
-      <div className="search-buttons"> 
-          <SearchButton message="Google Search"/>
-          <SearchButton message="I'm Feeling Lucky"/>
-
+      <div className="search-buttons">
+          <SearchButton message="Google Search"
+                        sayHello={this.handleClick}
+                        buttonBeenClicked={this.state.eitherIsClicked} />
+          <SearchButton message="I'm Feeling Lucky"
+                        sayHello={this.handleClick}
+                        buttonBeenClicked={this.state.eitherIsClicked} />
        </div>
     )
   }
@@ -167,7 +181,11 @@ class SearchButton extends Component {
 
   render() {
     return(
-      <button className="search-standard"> {this.props.message} </button>
+      <button className="search-standard"
+              onClick={this.props.sayHello}>
+        {this.props.message}
+        {this.props.buttonBeenClicked && 'hello!'}
+      </button>
     )
   }
 
