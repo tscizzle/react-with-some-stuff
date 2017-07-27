@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     let profileList = _.map(profileData, (profileObj) =>{
       return (
-        <Profile 
+        <Profile
         name={profileObj.name}
         age={profileObj.age}
         hobbies={profileObj.hobbies}
@@ -98,7 +98,7 @@ class Logo extends Component {
 class User extends Component {
 
   render() {
-  
+
 
       return(
 
@@ -161,10 +161,12 @@ render() {
     }
 
     return(
+
       <div className="search-info"> 
           <SearchBar text={this.state.text} takeText={this.changeText}/>
           <SearchButtons submit={this.submit}/>
         <div> {variable} </div>
+
        </div>
     )
   }
@@ -181,6 +183,17 @@ class SearchBar extends Component {
 }
 class SearchButtons extends Component {
   
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      eitherIsClicked: false,
+    }
+  }
+
+  handleClick = () => {
+    this.setState({eitherIsClicked: true})
+  }
 
   render() {
   
@@ -202,6 +215,7 @@ class SearchButton extends Component {
       <div>
         <button className="search-standard" onClick={this.props.submit}>{this.props.message}</button>
       </div>
+
     )
   }
 
